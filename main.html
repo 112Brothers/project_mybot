@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id='c'> -</div>
+<form><input id="e" /><button onclick="c();return false;">OK</button></form>
+<script type="text/javascript">
+var atts = {
+"РЕЛИГИЯ":"Нейтрально, кто верит, во что хочет",
+"МАЙНКРАФТ":" моя жизнь",
+"СМЫСЛ ЖИЗНИ":"Каждый ищет свой. Могу ли я тебе навязывать свой? (если че - 42)",
+"СМЕРТИ":"Не знаю. Смерть есть смерть",
+"ЖИЗНИ":"Жизнь - это прекрасно. Главное использовать ее с умом",
+"УБИЙСТВ":"Это ужасно, никак по другому это не назвать"
+};
+var howd = {
+"ЖИТЬ":"Каждый живет как хочет",
+"ЗАРАБОТАТЬ":"Хм... Да черт знает...",
+};
+	
+	function rin(arr,str)
+	{
+		for (var i=0;i<arr.length;i++) if(arr[i]==str) return true;
+		return false;
+	}
+ function r_e(arr) {
+ var el =arr[Math.floor(Math.random()*arr.length)];
+  return el;
+ }
+	function in_str(s1,s2)
+	{
+		var ss;if (s1.length>s2.length) {ss=s1;s1=s2;s2=ss;}var t=0,m=0;
+		for(var i=0;i<s1.length;i++) {if(s1[i]==s2[i]) {t++;if (t>m) m=t;} else t=0;}
+			console.log(m+"=t,s1"+s1+",s2="+s2);
+			if (m>=s1.length*0.75) return true;
+		return false;
+
+	}
+	var hello = [''];
+	var h=-1;
+	var k=0;
+	function attitude(what)
+	{//console.log(what);
+		var ans = undefined;
+		 for (var key in atts) {console.log(key);if (in_str(what,key)) return atts[key]; };
+		 	console.log(ans+" ya jij");
+		return "Я не знаю что это";
+	}
+	function how(wd)
+	{
+		var ans = undefined;
+		 for (var key in howd) {console.log(key);if (in_str(wd,key)) return howd[key]; };
+		 	
+		return "Ни понял. Повтори попонятнее";
+
+	}
+	function wh(q)
+	{
+		q=q.toUpperCase().trim();
+		if (q==''||q.length<3) return "Что?";
+		if (in_str("ПРИВЕТ",q)||in_str("ЗДРАВСТВУЙ",q)) {h++; if(h==0) {return r_e(['Привет',"Здорово","Добрый день","Здравствуйте","Гутен таг"]);} else if (h<5) return "Привет, но мы же уже здоровались"; else return "Да ты достал!";}
+		if (in_str("В ЧЕМ СМЫСЛ ЖИЗНИ",q)) return "Каждый ищет свой. Могу ли я тебе навязывать свой?";
+		if (in_str("КАК ДЕЛ",q)) {if(k==0) {k++;return "Хорошо";} else return "Я же уже говорил, что хорошо";}
+		if (in_str("ПОШЕЛ НА",q)||in_str("ИДИ к",q)||in_str("ИДИ НА",q)) return "Сам иди :(";
+		if (q.substr(0,17)=="КАК ОТНОСИШЬСЯ К ") return attitude(q.substr(17));
+		if (q.substr(0,15)=="КАК ОТНОСИШСЯ К ") return attitude(q.substr(16));
+		if (q.substr(0,16)=="КАК ОТНОСИШЬСЯ ") return attitude(q.substr(15));
+		if (q.substr(0,15)=="КАК ОТНОСИШСЯ ") return attitude(q.substr(14));
+		if (q.substr(0,4)=="КАК ") return how(q.substr(4));
+		console.log(q.substr(14));
+		return "Ни понял :(";
+	}
+
+	function c()
+	{
+		var q = document.getElementById('e').value;
+		var ans;
+		ans=wh(q);
+
+
+
+
+		document.getElementById("c").innerHTML+="<div style='color:red'>Вы: "+q+"</div><div style='color:blue'>Гучок: "+ans+"</div>";
+	}
+
+
+</script>
+
+</body>
+</html>
