@@ -12,14 +12,19 @@ var atts = {
 "МАЙНКРАФТ":" моя жизнь",
 "СМЫСЛ ЖИЗНИ":"Каждый ищет свой. Могу ли я тебе навязывать свой? (если че - 42)",
 "СМЕРТИ":"Не знаю. Смерть есть смерть",
-"ЖИЗНИ":"Жизнь - это прекрасно. Главное использовать ее с умом",
+"ЖИЗНИ":"Жизнь - это прекрасно. Главное, использовать ее с умом",
 "УБИЙСТВ":"Это ужасно, никак по другому это не назвать"
 };
 var howd = {
 "ЖИТЬ":"Каждый живет как хочет",
 "ЗАРАБОТАТЬ":"Хм... Да черт знает...",
+
 };
-	
+var who = {
+"ТЫ":"Я не знаю, кто я",
+"Я":"Очевидно, ты человек",
+"":"Прости, что?",
+};
 	function rin(arr,str)
 	{
 		for (var i=0;i<arr.length;i++) if(arr[i]==str) return true;
@@ -56,6 +61,14 @@ var howd = {
 		return "Ни понял. Повтори попонятнее";
 
 	}
+	function who(wd)
+	{
+		var ans = undefined;
+		 for (var key in whod) {console.log(key);if (in_str(wd,key)) return whod[key]; };
+		 	
+		return "Ни понял. Повтори попонятнее";
+
+	}
 	function wh(q)
 	{
 		q=q.toUpperCase().trim();
@@ -69,6 +82,7 @@ var howd = {
 		if (q.substr(0,16)=="КАК ОТНОСИШЬСЯ ") return attitude(q.substr(15));
 		if (q.substr(0,15)=="КАК ОТНОСИШСЯ ") return attitude(q.substr(14));
 		if (q.substr(0,4)=="КАК ") return how(q.substr(4));
+		if (q.substr(0,4)=="КТО ") return who(q.substr(4));
 		console.log(q.substr(14));
 		return "Ни понял :(";
 	}
